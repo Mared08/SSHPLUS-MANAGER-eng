@@ -26,7 +26,7 @@ SCRIPT SSHPLUS MANAGER is a script with a set of features and tools suitable for
 
 ## Installation
 
-apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Plus; chmod 777 Plus; ./Plus
+apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/Mared08/SSHPLUS-MANAGER-eng/blob/main/Plus; chmod 777 Plus; ./Plus
 
 -------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AA
 
 ## Installation
 
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Install/tcptweaker.sh; chmod +x tcptweaker.sh; ./tcptweaker.sh
+wget https://raw.githubusercontent.com/Mared08/SSHPLUS-MANAGER-eng/blob/main/Install/tcptweaker.sh; chmod +x tcptweaker.sh; ./tcptweaker.sh
 
 -------------------------------------------------------------------------------
 
