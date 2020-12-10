@@ -1,0 +1,39 @@
+#!/bin/bash
+[[ ! -d /etc/SSHPlus ]] && exit 0
+[[ ! -d /etc/bot/resale ]] && exit 0
+for arq in $(ls /etc/bot/resale); do
+	_diasR=$(grep -w 'SALES_DAYS' /etc/bot/resale/$arq/$arq | awk '{print $NF}')
+	[[ "$_diasR" -eq '0' ]] && {
+		[[ "$(grep -wc 'SUBRESALE' /etc/bot/resale/$arq/$arq)" != '0' ]] && {
+			while read _listsub3; do
+				_usub3="$(echo $_listsub3 | awk '{print $2}')"
+				_dir_users="/etc/bot/resale/$_usub3/users"
+				[[ "$(ls $_dir_users | wc -l)" != '0' ]] && {
+					for _user in $(ls $_dir_users); do
+						usermod -L $_user
+						pkill -U $_user
+					done
+				}
+				[[ $(grep -wc $_usub3 /etc/bot/lista_suspended) == '0' ]] && {
+					mv /etc/bot/resale/$_usub3 /etc/bot/suspended/$_usub3
+					grep -w "$_usub3" /etc/bot/active_list >>/etc/bot/list_suspended
+				}
+			done <<<"$(grep -w 'SUBRESALE' /etc/bot/resale/$arq/$arq)"
+		}
+		[[ "$(ls /etc/bot/resale/$arq/users | wc -l)" != '0' ]] && {
+			for _user in $(ls /etc/bot/resale/$arq/users); do
+				usermod -L $_user
+				pkill -U $_user
+			done
+		}
+		[[ $(grep -wc $arq /etc/bot/list_suspended) == '0' ]] && {
+			mv /etc/bot/resale/$arq /etc/bot/suspended/$arq
+			grep -w "$arq" /etc/bot/active_list >>/etc/bot/list_suspended
+		}
+	} || {
+		_days=$(($_diasR - 1))
+		sed -i "/\b$arq\b/ s/DAYS: $_diasR/DIAS: $_days/" /etc/bot/lista_ativos
+		sed -i "/SALES_DAYS/ s/$_diasR/$_days/" /etc/bot/resale/$arq/$arq
+		echo $arq $_diasR DAYS CHANGED TO $_days
+	}
+done

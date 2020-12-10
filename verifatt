@@ -1,0 +1,9 @@
+#!/bin/bash
+clear
+[[ -e /home/version ]] && rm /home/version
+wget -P /home http://ssh-plus.tk/script/version > /dev/null 2>&1
+[[ -f "/home/version" ]] && {
+	vrs1=$(sed -n '1 p' /bin/version| sed -e 's/[^0-9]//ig')
+    vrs2=$(sed -n '1 p' /home/version | sed -e 's/[^0-9]//ig')
+	[[ "$vrs1" != "$vrs2" ]] && mv /home/version /tmp/att
+}
