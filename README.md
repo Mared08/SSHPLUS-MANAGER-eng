@@ -28,33 +28,6 @@ SCRIPT SSHPLUS MANAGER is a script with a set of features and tools suitable for
 
 apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Plus; chmod 777 Plus; ./Plus
 
-
--------------------------------------------------------------------------------
-
-# PANEL SSHPLUS (VERSIONES)
-
-![logo](https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/blob/master/Imagenes/Panel_SSHPLUS_Web.jpg)
-
-```
-PANEL SSHPLUS is a complete management and user supervision tool that allows
-                 sales and sub-dealers for those who want to have a bigger deal,
-                 they also have an intuitive interface, which can be accessed from anywhere
-                 browser ...
-```
-
-## Installation
-
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Install/Panel_Web/Panelweb.sh; chmod +x Panelweb.sh; ./Panelweb.sh
-
-
--------------------------------------------------------------------------------
-
-```
-## PANEL SSHPLUS v20 (Installation Directa)
-
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Install/Panel_Web/panel_v20/install; chmod +x install; ./install
-```
-
 -------------------------------------------------------------------------------
 
 # TCP-Tweaker-1.0 (TCP-SPEED)
@@ -68,16 +41,8 @@ wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FR
 -------------------------------------------------------------------------------
 
 ```
-* SIN MINERIA! 
-* SIN KEYS! 
-* VERSION GRATUITA 
-* SIN VIRUS TROJANO (BOTNET) 
-* ARCHIVOS LIBERADOS (DECENCRIPTADOS)
-```
+#Credits to: Phc_Jayvee and Phc_efstab813 for suggestion and help to upload
+#Thank you Cupcake_13 to requesting this to translate in English version
+#Group: https://phcorner.net
 
-```
-☆ https://t.me/admmanagerfree ☆
-
-```
-
-**By: [  ⃘⃤꙰✰ ]**
+#Phc_Mared08
