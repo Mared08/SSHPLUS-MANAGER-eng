@@ -1,0 +1,47 @@
+#!/bin/bash
+clear
+echo -e "\E[44;1;37m User         Password       limit      validity \E[0m"
+echo ""
+[[ ! -e /bin/version ]] && rm -rf /bin/menu
+for users in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |sort |grep -v "nobody" |grep -vi polkitd |grep -vi system-`
+do
+if [[ $(grep -cw $users $HOME/users.db) == "1" ]]; then
+    lim=$(grep -w $users $HOME/users.db | cut -d' ' -f2)
+else
+    lim="1"
+fi
+if [[ -e "/etc/SSHPlus/password/$users" ]]; then
+    password=$(cat /etc/SSHPlus/password/$users)
+else
+    password="Null"
+fi
+datauser=$(chage -l $users |grep -i co |awk -F : '{print $2}')
+if [ $datauser = never ] 2> /dev/null
+then
+date="\033[1;33mNever\033[0m"
+else
+    databr="$(date -d "$datauser" +"%Y%m%d")"
+    today="$(date -d today +"%Y%m%d")"
+    if [ $hoje -ge $databr ]
+    then
+    date="\033[1;31mWon\033[0m"
+    else
+    dat="$(date -d"$datauser" '+%Y-%m-%d')"
+    date=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDays\033[0m")
+    fi
+fi
+User=$(printf ' %-15s' "$users")
+Password=$(printf '%-13s' "$senha")
+Limit=$(printf '%-10s' "$lim")
+Date=$(printf '%-1s' "$data")
+echo -e "\033[1;33m$User \033[1;37m$Password \033[1;37m$Limit \033[1;32m$Date\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+done
+echo ""
+_tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
+_ons=$(ps -x | grep sshd | grep -v root | grep priv | wc -l)
+[[ "$(cat /etc/SSHPlus/Exp)" != "" ]] && _expuser=$(cat /etc/SSHPlus/Exp) || _expuser="0"
+[[ -e /etc/openvpn/openvpn-status.log ]] && _onop=$(grep -c "10.8.0" /etc/openvpn/openvpn-status.log) || _onop="0"
+[[ -e /etc/default/dropbear ]] && _drp=$(ps aux | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
+_onli=$(($_ons + $_onop + $_ondrp))
+echo -e "\033[1;33m• \033[1;36mTOTAL USERS\033[1;37m $_tuser \033[1;33m• \033[1;32mONLINES\033[1;37m: $_onli \033[1;33m• \033[1;31mOVERDUE\033[1;37m: $_expuser \033[1;33m•\033[0m"
